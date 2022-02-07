@@ -97,7 +97,8 @@ public class App extends Object {
             //System.out.println("Batch works");
             String file = cmd.getOptionValue("batch");
             Path path = Paths.get(file);
-            System.out.println("Batch value: " + path.toString());
+
+            System.out.println("Batch value: " + path.getFileName().toString());
             if (cmd.hasOption("batch")) {
                 String getFile = cmd.getOptionValue("batch");
                 Path paths = Paths.get(getFile);
@@ -126,7 +127,7 @@ public class App extends Object {
                     int result = Integer.parseInt(String.valueOf(path.iterator().hasNext()));
                     out.output(Integer.toString(result));
                 }
-            } else {
+            } else{
                 System.out.println("There has been an error. Please make sure it is typed in correctly!");
                 System.exit(0);
             }
