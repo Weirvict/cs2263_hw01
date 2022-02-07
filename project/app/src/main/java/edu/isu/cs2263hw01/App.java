@@ -11,6 +11,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
+
+/**
+ * Has options, accepts math equations using java
+ * @author Victoria Weir
+ */
 public class App extends Object {
     /**
      * Simple method to process the expressions and return a result
@@ -61,6 +66,8 @@ public class App extends Object {
         CommandLineParser parser = new DefaultParser();
         //help formatter
         HelpFormatter formatter = new HelpFormatter();
+        //output
+        Output out = new ExpressionOutputter();
 
 
         //Option build
@@ -68,6 +75,7 @@ public class App extends Object {
         options.addOption(OptionBuilder.withLongOpt("batch").withDescription("The batch file containing expressions to evaluate").hasArg().withArgName("file").create('b'));
         options.addOption(OptionBuilder.withLongOpt("help").withDescription("Print usage message").create('h'));
         options.addOption(OptionBuilder.withLongOpt("output").withDescription("Output file").hasArg().withArgName("file").create('o'));
+
         CommandLine cmd = parser.parse(options, args);
 
 
@@ -95,11 +103,16 @@ public class App extends Object {
                 Path paths = Paths.get(getFile);
                 if (Files.exists(paths)) {
                     path = paths;
+                    //loop that will go through the equation
+                    while (true) {
+                        System.out.print("> ");
+                        int result = Integer.parseInt(String.valueOf(path.iterator().hasNext()));
+                        out.output(Integer.toString(result));
+                    }
                 } else {
                     System.out.println("The provided file for the batch input mode does not exist.");
                     System.exit(1);
                 }
-
             }
             //prints out the output option
             else if (cmd.hasOption("-o") || cmd.hasOption("-output") || cmd.hasOption("output")) {
@@ -107,14 +120,15 @@ public class App extends Object {
                 String fileOutput = cmd.getOptionValue("output");
                 Path paths = Paths.get(fileOutput);
                 System.out.println("Output value: " + paths.toString());
+                //loop that will go through the equation
+                while (true) {
+                    System.out.print("> ");
+                    int result = Integer.parseInt(String.valueOf(path.iterator().hasNext()));
+                    out.output(Integer.toString(result));
+                }
             } else {
                 System.out.println("There has been an error. Please make sure it is typed in correctly!");
                 System.exit(0);
-            }
-            while (true) {
-                System.out.print("> ");
-                String line = scan.nextLine();
-                int result = processExpression(line);
             }
         }
     }
