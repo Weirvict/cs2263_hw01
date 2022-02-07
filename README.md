@@ -9,6 +9,7 @@
 ***
 ## Installation
 * The best way to install this program that I know of is by cloning the project.
+* Then run gradle assemble, copy the file to specified location, and then unzip it.
 ***
 ## Usage
 * This project will help with simple mathmatical evaluations.
