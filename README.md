@@ -1,4 +1,4 @@
-# cs2263_hw01
+# Version Control Test
 ***
 ## What it is about:
 * This project tests my ability to use version control, GitHub, Git, and GitFlow as well as Gradle. I am to properly use and write this project to the fullest and hopefully meeting the requirements of it actually being a proper project.
